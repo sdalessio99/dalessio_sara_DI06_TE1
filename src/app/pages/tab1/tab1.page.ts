@@ -29,6 +29,29 @@ export class Tab1Page implements OnInit {
     { nombre: 'Pedro', apellido: 'ruiz', pais: "españa", edad: 40 }
   ];
 
+  datosLista = [
+    "Esta será la línea 1 de la lista, vamos a poner un texto muy largo para ver qué es lo que hace en estos casos y como podemos corregirlo",
+    "Esta será la línea 2 de la lista, será más corta que la anterior, pero entrará bastante justo en el ancho A4.",
+    "Esta será la línea 3 de la lista, este entra bien",
+    "Esta será la línea 4 de la lista, este entra bien",
+    "Esta será la línea 5 de la lista, este entra bien",
+    "Esta será la línea 6 de la lista, este entra bien",
+    "Esta será la línea 7 de la lista, este entra bien",
+    "Esta será la línea 8 de la lista, este entra bien",
+    "Esta será la línea 9 de la lista, este entra bien",
+    "Esta será la línea 10 de la lista, este entra bien",
+    "Esta será la línea 11 de la lista, este entra bien",
+    "Esta será la línea 12 de la lista, este entra bien",
+    "Esta será la línea 13 de la lista, este entra bien",
+    "Esta será la línea 14 de la lista, este entra bien",
+    "Esta será la línea 15 de la lista, este entra bien",
+    "Esta será la línea 16 de la lista, este entra bien",
+    "Esta será la línea 17 de la lista, este entra bien",
+    "Esta será la línea 18 de la lista, este entra bien",
+    "Esta será la línea 19 de la lista, este entra bien",
+    "Esta será la línea 20 de la lista, este entra bien",
+  ]
+
    // Array para la cabecera de las noticias
    categorias: string[] = [
     "business",
@@ -84,11 +107,15 @@ export class Tab1Page implements OnInit {
   }
 
   generarPDF() {
+    //Ancho en px de A4
+    const anchoMax = 794 //794px; //210mm
+    //Alto en px de A4
+    const altoMax = 1123;//1123px; //297mm
     const doc = new jsPDF({
       orientation: 'portrait', //Orientación normal 
       unit: 'px', //En este caso como unidades utilizamos mm, pero podríamos poner cm,px,em,pt,...
       //mm -> [210, 297]
-      format: [794,1123]
+      format: [anchoMax,altoMax]
     });
 
     /* querySelectorAll: Cogemos todos los selectores que tengan class="seccion" y creamos un NodeListOf de HTMLElement.

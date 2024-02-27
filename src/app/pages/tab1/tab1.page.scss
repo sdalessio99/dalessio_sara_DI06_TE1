@@ -41,17 +41,18 @@
 
 /* Estilos específicos para los componentes */
 app-lista,
-app-tablas,
+//app-tablas,
 app-bar-chart {
   display: block;
   margin-bottom: 20px;
   padding: 60px;
 }
 
-/* Estilos específicos para la tabla */
+/* Estilos específicos para la tabla 
 table {
   width: 100%;
   border-collapse: collapse;
+  padding: 20px;
 }
 
 th,
@@ -62,4 +63,4 @@ td {
 
 th {
   background-color: #f2f2f2;
-}
+}*/

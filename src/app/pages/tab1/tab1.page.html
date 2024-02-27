@@ -15,57 +15,13 @@
 
     <div class="seccion list-container">
       <h2>List</h2>
-      <ul>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-        <li>Esta será la línea 1 de la lista</li>
-        <li>Esta será la línea 2 de la lista</li>
-        <li>Esta será la línea 3 de la lista</li>
-        <li>Esta será la línea 4 de la lista</li>
-      </ul>
-      <!--<app-lista></app-lista>-->
+        <ul *ngFor="let lista of datosLista">
+          <li>{{lista}}</li>
+        </ul>
     </div>
 
-    <div class="seccion table-container">
-      <h2>Table</h2>
+    <div class="table-container">
+      <h2 class="seccion">Table</h2>
       <app-tablas [datosTabla]="datosTablaTab1"></app-tablas>
     </div>
 
@@ -74,8 +30,8 @@
       <app-bar-chart [nombresCategorias]="categorias" [borderColorCategorias]="borderColorCat" [backgroundColorCategorias]="backgroundColorCat"></app-bar-chart>
     </div>
 
-    <div class="seccion table-container">
-      <h2>Table</h2>
+    <div class="table-container">
+      <h2 class="seccion">Table</h2>
       <app-tablas [datosTabla]="datosTablaTab1"></app-tablas>
     </div>
 

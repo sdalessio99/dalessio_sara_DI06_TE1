@@ -1,20 +1,19 @@
-<table #tablaContainer class="mi-tabla">
-  <thead>
-    <tr>
-      <!-- Si queremos utilizar esta table para json's de diferentes tamaños, tendremos que hacer uso de keyvalue -->
-      <!-- keyvalue, hace que podamos trabajar con el par {key, value} del primer valor de datosTabla
-        -- Si datosTabla contiene {nombre: "juan", apellido: "garcia", edad: "30"} lo transforma a algo así:
-        -- item [{key: nombre, value: "juan"}, {key: apellido, value: "garcia"}, {key: edad, value: "30"}]
-        -- Al imprimir mediante la key, el orden en el que nos muestra los valores puede cambiar, normalmente suele ordenar alfabéticamente.
-      -->
-      <th *ngFor="let item of datosTabla[0] | keyvalue">{{ item.key }}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!--Leemos la lista de datos-->
-    <tr *ngFor="let fila of datosTabla">
-      <!--Por cada fila, mostramos todos los valores que tengamos-->
-      <td *ngFor="let item of fila | keyvalue">{{item.value}}</td>
-    </tr>
-  </tbody>
-</table>
+<div *ngFor="let row of datosTabla | tablePipe: 10">
+  <div class="divTabla" [ngClass]="{'seccion': row.length <= 10}">
+    <!-- Aquí creamos una tabla por cada conjunto de 20 filas -->
+    <table class="mi-tabla">
+      <thead>
+        <tr>
+          <!-- Encabezados de la tabla -->
+          <th *ngFor="let item of row[0] | keyvalue">{{ item.key }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Filas de la tabla -->
+        <tr *ngFor="let fila of row">
+          <td *ngFor="let item of fila | keyvalue">{{ item.value }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
