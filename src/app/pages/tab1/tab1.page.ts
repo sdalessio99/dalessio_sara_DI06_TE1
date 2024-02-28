@@ -26,6 +26,36 @@ export class Tab1Page implements OnInit {
     { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
     { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
     { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'Pedro', apellido: 'ruiz', pais: "españa", edad: 40 },
+    { nombre: 'Juan', apellido: 'garcia', pais: "españa", edad: 30 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'Pedro', apellido: 'ruiz', pais: "españa", edad: 40 },
+    { nombre: 'Juan', apellido: 'garcia', pais: "españa", edad: 30 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
+    { nombre: 'María', apellido: 'perez', pais: "portugal", edad: 25 },
     { nombre: 'Pedro', apellido: 'ruiz', pais: "españa", edad: 40 }
   ];
 
@@ -86,10 +116,6 @@ export class Tab1Page implements OnInit {
   // Están almacenados en los ficheros de la carpeta enviroments
   apiKey: string = environment.apiKey;
   apiUrl: string = environment.apiUrl;
-  //Declaramos y creamos el array de noticias vacío
-  //listaResultadosCategoria: number[] = [];
-
-  tipoDeChartSeleccionado: string = "bar-chart";
 
   /* En el html, añadimos el atributo #container al div padre (será una id única), para luego poder gestionar todo lo que hay dentro de este div.
    * @ViewChield('container'), busca el atributo #container
@@ -132,7 +158,7 @@ export class Tab1Page implements OnInit {
 
     //Gestionará el height de la página actual
     let headerHeight = 55; //Altura del padding que le hemos dado al header
-    let footerHeight = 10; //Altura del padding que le hemos dado al footer
+    let footerHeight = 20; //Altura del padding que le hemos dado al footer
     let currentPageHeight = headerHeight+footerHeight;
 
     /* Realizamos un bucle para todas las secciones.
@@ -172,26 +198,39 @@ export class Tab1Page implements OnInit {
 
   addPageConfig(doc:jsPDF) {
     for (let i = 1; i <= doc.getNumberOfPages(); i++) {
-      // Añadimos la págin
+      // Añadimos la página
       doc.setPage(i);
-      // Añadimos el logotipo, sus valores y posición
-      const imagen = "/assets/icon/favicon.png";
-      const imgWidth = 45; // Ancho de la imagen
-      const imgHeight = 45; // Alto de la imagen
-      const imgX = 5; // Posición X de la imagen
-      const imgY = 5; // Posición Y de la imagen
-      doc.addImage(imagen, "JPG", imgX, imgY, imgWidth, imgHeight);
-      // Le asignamos un tamaño a las letras
-      doc.setFontSize(10);
-      doc.line(0, 55, doc.internal.pageSize.width, 55);
-      // Añadimos información de la empresa
-      const nombreEmpresa = "Nombre de la Empresa";
-      const telefono = "Teléfono: 123-456-789";
-      const direccion = "Dirección: Calle Principal, 123";
-      const texto = nombreEmpresa+'\n'+telefono+'\n'+direccion;
-      doc.text(texto, doc.internal.pageSize.width - 120, 10, {baseline:'top'});
-      // Añadimos la paginación
-      doc.text("Página "+i, doc.internal.pageSize.width - 100, doc.internal.pageSize.height - 10, {baseline:'bottom'});
+      this.addPageHeader(doc);
+      this.addPageFooter(doc, i);
     }
+  }
+
+  addPageHeader(doc:jsPDF){
+    // Añadimos el logotipo, sus valores y posición
+    const imagen = "/assets/icon/favicon.png";
+    const imgWidth = 45; // Ancho de la imagen
+    const imgHeight = 45; // Alto de la imagen
+    const imgX = doc.internal.pageSize.width/2 - imgWidth/2; // Posición X de la imagen
+    const imgY = 5; // Posición Y de la imagen
+    // Le asignamos un tamaño a las letras
+    doc.setFontSize(10);
+    doc.line(0, 55, doc.internal.pageSize.width, 55);
+    doc.setFillColor('#CCCCCC');
+    doc.rect(10, 5, 774, 45, 'F');
+    doc.addImage(imagen, "JPG", imgX, imgY, imgWidth, imgHeight);
+
+    // Añadimos información de la empresa
+    const nombreEmpresa = "Nombre de la Empresa";
+    const telefono = "Teléfono: 123-456-789";
+    const direccion = "Dirección: Calle Principal, 123";
+    const texto = nombreEmpresa+'\n'+telefono+'\n'+direccion;
+    doc.text(texto, 20, 10, {baseline:'top'});
+  }
+
+  addPageFooter(doc:jsPDF, i:number){
+    // Añadimos la paginación
+    doc.setFillColor('#CCCCCC');
+    doc.rect(10, doc.internal.pageSize.height - 20, doc.internal.pageSize.width - 20, 10, 'F');
+    doc.text("Página "+i+" de "+doc.getNumberOfPages(), doc.internal.pageSize.width/2, doc.internal.pageSize.height - 10, {align: 'center',baseline:'bottom'});
   }
 }

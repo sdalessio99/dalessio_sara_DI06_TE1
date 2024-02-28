@@ -10,7 +10,7 @@
 
 .header {
   text-align: center;  
-  padding-top: 55px;
+  padding-top: 35px;
  //margin-bottom: 30px;
 }
 
@@ -27,8 +27,7 @@
 }
 
 .list-container,
-.table-container,
-.chart-container {
+.table-container {
   margin-top: 55px;  
   background-color: #fff;
   border-radius: 5px;
@@ -39,13 +38,23 @@
   //text-align: center;
 }
 
+.chart-container {
+  margin-top: 55px;  
+  background-color: #fff;
+  border-radius: 5px;
+  width: 33%;
+  max-width: 100%;
+  min-width: 200px;
+  //min-height: 200px;
+  //text-align: center;
+}
+
 /* Estilos específicos para los componentes */
-app-lista,
-//app-tablas,
+app-pie-chart,
+app-line-chart,
 app-bar-chart {
   display: block;
-  margin-bottom: 20px;
-  padding: 60px;
+  padding: 20px;
 }
 
 /* Estilos específicos para la tabla 
