@@ -15,21 +15,20 @@
 
     <div class="seccion" style="display: inline-flex; width: 100%;">
       <div class="chart-container">
-        <h2>Chart</h2>
+        <h2>Bar Chart</h2>
         <app-bar-chart [nombresCategorias]="categorias" [borderColorCategorias]="borderColorCat" [backgroundColorCategorias]="backgroundColorCat"></app-bar-chart>
       </div>
       <div class="chart-container">
-        <h2>Chart</h2>
+        <h2>Pie Chart</h2>
         <app-pie-chart></app-pie-chart>
       </div>
       <div class="chart-container">
-        <h2>Chart</h2>
+        <h2>Line Chart</h2>
         <app-line-chart></app-line-chart>
       </div>
     </div>
 
     <div class="table-container">
-      <h2 class="seccion">Table</h2>
       <app-tablas [datosTabla]="datosTablaTab1"></app-tablas>
     </div>
 
@@ -38,6 +37,10 @@
         <ul *ngFor="let lista of datosLista">
           <li>{{lista}}</li>
         </ul>
+    </div>
+
+    <div class="table-container">
+      <app-tablas [datosTabla]="datosTablaTab1"></app-tablas>
     </div>
   </div>
 

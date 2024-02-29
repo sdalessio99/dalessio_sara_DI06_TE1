@@ -1,5 +1,5 @@
 .divTabla{
-    padding: 20px;
+    padding: 10px;
 }
 
 .mi-tabla {
@@ -7,20 +7,25 @@
     border-collapse: collapse;
 }
 
+.divTabla h2{
+    text-align: center;
+    font-size: 20px;
+}
+
 .mi-tabla th, .mi-tabla td {
-border: 1px solid #dddddd;
-padding: 8px;
-text-align: left;
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
 }
 
 .mi-tabla th {
-background-color: #98ceec;
+    background-color: #98ceec;
 }
 
 .mi-tabla tr:nth-child(even) {
-background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
 
 .mi-tabla tr:hover {
-background-color: #ddd;
+    background-color: #ddd;
 }

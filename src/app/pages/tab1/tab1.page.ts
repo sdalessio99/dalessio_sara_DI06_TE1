@@ -159,7 +159,7 @@ export class Tab1Page implements OnInit {
     //Gestionará el height de la página actual
     let headerHeight = 55; //Altura del padding que le hemos dado al header
     let footerHeight = 20; //Altura del padding que le hemos dado al footer
-    let currentPageHeight = headerHeight+footerHeight;
+    let currentPageHeight = headerHeight;
 
     /* Realizamos un bucle para todas las secciones.
      * Importante: html2canvas es asíncrono, por tanto, tendremos que realizar el bucle entero y luego html2canvas se encargará de la creación del pdf.
@@ -170,19 +170,37 @@ export class Tab1Page implements OnInit {
       const section = sections[currentSectionIndex];
       html2canvas(section).then(canvas => {
         const imageData = canvas.toDataURL('image/jpg');
-        const width = doc.internal.pageSize.getWidth();
-        /*Se calcula el height dependiendo del height del canvas y su relación con el width. 
-         *Esto se hace para que la imagen mantenga dimensiones proporcionales según el width de la página.
+        let width = doc.internal.pageSize.getWidth();
+        /* Se calcula el height dependiendo del height del canvas y su relación con el width. 
+         * Esto se hace para que la imagen mantenga dimensiones proporcionales según el width de la página.
+         * Si el height + header + footer de la imagen tiene una altura mayor que el tamaño máximo del pdf,
+         * modificamos el heigth y width para que entre toda la imagen dentro de la página.
          */
-        const height = canvas.height * (width / canvas.width);
-        if (currentPageHeight + height >= doc.internal.pageSize.getHeight()) {
+        let height = canvas.height * (width / canvas.width);
+        /* Con este if comprobamos cuantas imágenes podemos meter en una página.
+         * Mientras no se cumpla la condición irá insertando imágenes y si se cumple, crearemos una página nueva.
+         */
+        if (currentPageHeight + height + footerHeight >= doc.internal.pageSize.getHeight()) {
+          //Añadimos una página nueva
           doc.addPage();
-          currentPageHeight = headerHeight+footerHeight;
-          //currentPageHeight = headerHeight + footerHeight;
-          //this.addPageConfig(doc);
+          //Si insertamos una página nueva, reiniciamos el currentPageHeight=55px para que empiece a insertar imágenes después de la cabecera.
+          currentPageHeight = headerHeight;
         }
-        //this.addPageConfig(doc);
-        doc.addImage(imageData, 'JPG', 0, currentPageHeight, width, height);
+        /* Si el height + header + footer de la imagen tiene una altura mayor que el tamaño máximo del pdf,
+         * modificamos el heigth y width para que entre toda la imagen dentro de la página.
+         * Es la misma condición que el if de arriba, pero esta vez no creamos una página nueva, sino que insertamos la imagen
+         * -> o bien ocupando toda la página junto a la cabecera y el footer 
+         * -> o insertándo la imagen después de otra imagen hasta llenar la página.
+         */
+        if(height+currentPageHeight+footerHeight >= doc.internal.pageSize.getHeight()){
+          height = altoMax-currentPageHeight-footerHeight;
+          width = canvas.width * (height / canvas.height);
+          doc.addImage(imageData, 'JPG', 0, headerHeight, width, height);
+        } else{
+          doc.addImage(imageData, 'JPG', 0, currentPageHeight, width, height);
+        }
+
+        //Actualizamos el currentPageHeigth para ver si ppodemos insertar otra imagen en la misma página o no.
         currentPageHeight += height;
         contSections++;
         if (contSections === totalSections) {
@@ -216,7 +234,7 @@ export class Tab1Page implements OnInit {
     doc.setFontSize(10);
     doc.line(0, 55, doc.internal.pageSize.width, 55);
     doc.setFillColor('#CCCCCC');
-    doc.rect(10, 5, 774, 45, 'F');
+    doc.rect(10, 5, doc.internal.pageSize.width - 20, 45, 'F');
     doc.addImage(imagen, "JPG", imgX, imgY, imgWidth, imgHeight);
 
     // Añadimos información de la empresa

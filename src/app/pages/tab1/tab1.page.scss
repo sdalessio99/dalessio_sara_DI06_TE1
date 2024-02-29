@@ -1,6 +1,6 @@
 /* Estilos generales para el PDF */
 .container {
-  max-width: 100%; /* Ajustar el ancho máximo al tamaño del PDF */
+  max-width: 100%; //Ajustar el ancho máximo al tamaño del PDF
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;
@@ -10,8 +10,6 @@
 
 .header {
   text-align: center;  
-  padding-top: 35px;
- //margin-bottom: 30px;
 }
 
 .header h1 {
@@ -26,27 +24,24 @@
   font-size: 20px;
 }
 
-.list-container,
+.list-container{
+    padding-top: 20px;  
+    background-color: #fff;
+    border-radius: 5px;
+    max-width: 100%;
+}
 .table-container {
-  margin-top: 55px;  
+  //margin-top: 55px;  
   background-color: #fff;
-  border-radius: 5px;
-  //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  //padding-bottom: 20px;
   max-width: 100%;
-  min-width: 200px;
-  //min-height: 200px;
-  //text-align: center;
 }
 
 .chart-container {
-  margin-top: 55px;  
   background-color: #fff;
   border-radius: 5px;
   width: 33%;
   max-width: 100%;
-  min-width: 200px;
-  //min-height: 200px;
-  //text-align: center;
 }
 
 /* Estilos específicos para los componentes */
@@ -56,20 +51,3 @@ app-bar-chart {
   display: block;
   padding: 20px;
 }
-
-/* Estilos específicos para la tabla 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  padding: 20px;
-}
-
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-th {
-  background-color: #f2f2f2;
-}*/
