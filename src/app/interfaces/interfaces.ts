@@ -1,5 +1,5 @@
 export interface RespuestaNoticias {
-    map(arg0: (item: any) => any): unknown;
+    //map(arg0: (item: any) => any): unknown;
     status: string;
     totalResults: number;
     articles: Article[];

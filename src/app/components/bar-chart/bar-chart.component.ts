@@ -44,7 +44,7 @@ export class BarChartComponent implements OnInit {
   }*/
 
   //Método que actualiza los valores de la gráfica teniendo como referencia cada categoria
-  private actualizarValoresChart(categoria: string, totalResults: number) {
+  public actualizarValoresChart(categoria: string, totalResults: number) {
     const existingData = this.apiData.find(item => item.categoria === categoria);
 
     if (existingData) {
@@ -57,7 +57,7 @@ export class BarChartComponent implements OnInit {
   }
 
   //Método que actualiza la gráfica, le asigna los labels (leyendas), colores y valores
-  private actualizarChart() {
+  public actualizarChart() {
     // Actualiza solo los datos del gráfico sin volver a crearlo
     const datasetsByCompany: { [key: string]: { label: string; data: number[]; backgroundColor: string[]; borderColor: string[]; borderWidth: number } } = {};
 

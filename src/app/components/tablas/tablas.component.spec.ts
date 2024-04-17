@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { TablasComponent } from './tablas.component';
+import { TablePipePipe } from 'src/app/pipes/table-pipe.pipe';
 
 describe('TablasComponent', () => {
   let component: TablasComponent;
@@ -9,7 +10,7 @@ describe('TablasComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TablasComponent ],
+      declarations: [ TablasComponent, TablePipePipe],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
