@@ -10,11 +10,17 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe('BarChartComponent', () => {
   let component: BarChartComponent;
   let fixture: ComponentFixture<BarChartComponent>;
-  let gestionApiService: GestionApiService;
+  //let gestionApiService: GestionApiService;
   let mockApiData: {categoria: string, totalResults: number}[]=[];
 
   // Declara un BehaviorSubject falso para usar en las pruebas
   const fakeSubject = new BehaviorSubject<{ categoria: string; totalResults: number; }>({ categoria: 'general', totalResults: 0 });
+
+  const mockGestionService: {
+    cargarCategoria: (categoria: string) => void;
+  } = {
+    cargarCategoria: (categoria: string) => {}
+  }
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -23,14 +29,14 @@ describe('BarChartComponent', () => {
       providers: [
         {
           provide: GestionApiService,
-          useValue: {datos$: fakeSubject}
+          useValue: {datos$: fakeSubject, mockGestionService}
         }
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BarChartComponent);
     component = fixture.componentInstance;
-    gestionApiService = TestBed.inject(GestionApiService);
+    //gestionApiService = TestBed.inject(GestionApiService);
     fixture.detectChanges();
   }));
 
